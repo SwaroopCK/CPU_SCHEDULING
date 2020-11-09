@@ -1,0 +1,71 @@
+<html>
+	<head>
+	<link rel="stylesheet" href="project css/login.css" type="text/css">
+	<script>
+		function focus(){
+			form1.name.focus();
+		}
+		
+		function validate(){
+			jname=form1.name.value;
+			jpassword=form1.password.value;
+			jcpassword=document.getElementById("cpassword").value;
+			
+			if(jname=="" || jname==null){
+				alert("Please enter the username!!!");
+				return false;
+			}else if(jname.length<8){
+				document.getElementById("namespan").style.color="red";
+				document.getElementById("namespan").style.fontSize="12px";
+				document.getElementById("namespan").innerHTML="username must contain atleast 8 characters.";
+				return false;
+			}else if(!(isNaN(jname))){
+				document.getElementById("namespan").style.color="red";
+				document.getElementById("namespan").style.fontSize="12px";
+				document.getElementById("namespan").innerHTML="enter characters only";
+				return false;
+			}else if(jpassword=="" || jpassword==null){
+				alert("Please enter the password!!!");
+				return false;
+			}else if(jpassword.length<8){
+				document.getElementById("passwordspan").style.color="red";
+				document.getElementById("passwordspan").style.fontSize="12px";
+				document.getElementById("passwordspan").innerHTML="password must contain atleast 8 characters.";
+				form1.password.value="";
+				return false;
+			}else if(jcpassword==null || jcpassword==""){
+				alert("Please confirm the password!!!");
+				return false;
+			}else if(jpassword!=jcpassword){
+				document.getElementById("cpasswordspan").style.color="red";
+				document.getElementById("cpasswordspan").style.fontSize="12px";
+				document.getElementById("cpasswordspan").innerHTML="password doesn't match.";
+				document.getElementById("cpassword").value="";
+				return false;
+			}else
+				return true;
+		}
+	</script>
+	</head>
+	
+	<body onload="focus()">
+		<div class="login-page">
+			<div class="form">		
+				<form name="form1" method="POST" action="register" class="login-form">
+
+				  <input type="text" name="name" placeholder="username"/>
+				  <span id="namespan"></span>
+				  <input type="password" name="password" placeholder="password"/>
+				  <span id="passwordspan"></span>
+				  <input type="password" id="cpassword" placeholder="confirm password"/>
+				  <span id="cpasswordspan"></span>
+				  
+				  <button type="submit" onclick="return validate()">create</button>
+
+				  <p class="message">Already registered? <a href="login.html">Sign In</a></p>
+
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
